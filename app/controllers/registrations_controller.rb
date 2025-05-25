@@ -3,6 +3,8 @@ class RegistrationsController < ApplicationController
 
   def new
     @user = User.new
+
+    render Views::Registrations::New.new(user: @user)
   end
 
   def create
