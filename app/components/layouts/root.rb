@@ -32,7 +32,7 @@ module Components
             stylesheet_link_tag :application, data_turbo_track: :reload
           end
 
-          body(class: "h-dvh") do
+          body do
             yield
 
             Components::Layouts.Flash

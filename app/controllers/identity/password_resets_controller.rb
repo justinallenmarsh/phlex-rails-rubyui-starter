@@ -4,6 +4,7 @@ class Identity::PasswordResetsController < ApplicationController
   before_action :set_user, only: %i[ edit update ]
 
   def new
+    render Views::Identity::PasswordResets::New.new
   end
 
   def edit
