@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       @session = user.sessions.create!
       cookies.signed.permanent[:session_token] = { value: @session.id, httponly: true }
 
-      redirect_to root_path, notice: "Signed in successfully"
+      redirect_to dashboard_path, notice: "Signed in successfully"
     else
       redirect_to sign_in_path, alert: "That email or password is incorrect"
     end
