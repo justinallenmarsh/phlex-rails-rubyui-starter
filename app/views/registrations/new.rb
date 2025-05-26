@@ -3,7 +3,7 @@
 module Views
   module Registrations
     class New < Views::Base
-      def initialize(user:)
+      def initialize(user: nil)
         @user = user
       end
 
@@ -13,17 +13,6 @@ module Views
           p(class: "text-muted-foreground text-center text-sm") { "Enter your details below to create your account" }
           form_with(url: sign_up_path, class: "flex flex-col gap-6 w-full") do |form|
             div(class: "grid gap-6") do
-              if @user&.errors&.any?
-                div(class: "bg-destructive/10 text-destructive p-4 rounded-md text-sm") do
-                  h2(class: "font-medium") { "#{pluralize(@user.errors.count, 'error')} prohibited this user from being saved:" }
-                  ul(class: "list-disc pl-5 mt-2") do
-                    @user.errors.each do |error|
-                      li { error.full_message }
-                    end
-                  end
-                end
-              end
-
               div(class: "grid gap-2") do
                 FormFieldLabel(for: "email") { "Email address" }
                 Input(
@@ -38,6 +27,11 @@ module Views
                   autocomplete: "email",
                   placeholder: "email@example.com"
                 )
+                if @user&.errors&.any?
+                  @user.errors.full_messages_for(:email).each do |message|
+                    render InputError.new(message:)
+                  end
+                end
               end
 
               div(class: "grid gap-2") do
@@ -53,6 +47,11 @@ module Views
                   placeholder: "Password"
                 )
                 div(class: "text-muted-foreground text-xs") { "12 characters minimum" }
+                if @user&.errors&.any?
+                  @user.errors.full_messages_for(:password).each do |message|
+                    render InputError.new(message:)
+                  end
+                end
               end
 
               div(class: "grid gap-2") do
@@ -67,8 +66,12 @@ module Views
                   autocomplete: "new-password",
                   placeholder: "Confirm password"
                 )
+                if @user&.errors&.any?
+                  @user.errors.full_messages_for(:password_confirmation).each do |message|
+                    render InputError.new(message:)
+                  end
+                end
               end
-
 
               Button(type: "submit", class: "w-full", tabindex: 4) do
                 "Sign up"

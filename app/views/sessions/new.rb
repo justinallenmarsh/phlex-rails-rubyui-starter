@@ -1,6 +1,12 @@
+# frozen_string_literal: true
+
 module Views
   module Sessions
     class New < Views::Base
+      def initialize(user: nil)
+        @user = user
+      end
+
       def view_template
         Layouts.Auth do
           h1(class: "text-xl font-medium") { "Log in to your account" }
@@ -25,8 +31,7 @@ module Views
               div(class: "grid gap-2") do
                 div(class: "flex items-center") do
                   FormFieldLabel(for: "password") { "Password" }
-                  Link(href: new_identity_password_reset_path, class: "ml-auto text-sm", tabindex: 5
-                  ) do
+                  Link(href: new_identity_password_reset_path, class: "ml-auto text-sm", tabindex: 5) do
                     "Forgot password?"
                   end
                 end
