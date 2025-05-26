@@ -1,8 +1,6 @@
 module Components
   module Layouts
     class App < Base
-      private
-
       def view_template(&)
         Layouts.Root do
           div(class: "flex bg-background") do
