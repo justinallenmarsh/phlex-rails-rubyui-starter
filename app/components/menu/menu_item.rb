@@ -14,11 +14,12 @@ module Components
         li(class: "w-full flex") do
           render Link.new(
             href: attrs[:href],
-            variant: @active ? :secondary : :ghost,
+            variant: :ghost,
             size: :md,
-            class: [
-              "w-full flex gap-2 justify-start px-2"
-            ],
+            class: class_names(
+              "w-full flex gap-2 justify-start px-2",
+              "bg-muted": @active
+            ),
             **attrs.except(:href)
           ) do
             yield

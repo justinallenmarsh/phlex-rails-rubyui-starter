@@ -8,6 +8,7 @@ class Identity::PasswordResetsController < ApplicationController
   end
 
   def edit
+    render Views::Identity::PasswordResets::Edit.new(user: @user)
   end
 
   def create

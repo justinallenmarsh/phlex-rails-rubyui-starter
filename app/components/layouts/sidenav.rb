@@ -2,7 +2,7 @@ module Components
   module Layouts
     class Sidenav < Components::Base
       def view_template
-        render Menu::Menu.new size: :lg, class: "flex flex-col justify-between bg-base-200 min-h-full w-(--sidebar-width)" do
+        render Menu::Menu.new size: :lg, class: "h-dvh flex flex-col justify-between bg-base-200 min-h-full w-(--sidebar-width)" do
           div(class: "flex flex-col gap-2") do
             div(class: "flex gap-3 items-center p-2") do
               div(class: "p-1 round-md bg-ruby-red rounded-md") do
@@ -14,7 +14,6 @@ module Components
             end
             Layouts.MenuItems
           end
-
 
           div(class: "flex flex-col gap-2 items-start items-center p-2") do
             render Menu::MenuItem.new href: "https://github.com/jmarsh24/phlex-rails-rubyui-starter", target: "_blank", class: "text-muted-foreground gap-2" do
@@ -55,7 +54,7 @@ module Components
 
                   render DropdownMenuSeparator.new
 
-                  DropdownMenuItem(href: "/settings", class: "flex items-center gap-4 px-2 py-1.5 text-sm") do
+                  DropdownMenuItem(href: settings_profile_path, class: "flex items-center gap-4 px-2 py-1.5 text-sm") do
                     Lucide.Settings(class: "size-4")
                     span { "Settings" }
                   end

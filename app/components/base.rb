@@ -11,6 +11,8 @@ module Components
     include Phlex::Rails::Helpers::Flash
     include Phlex::Rails::Helpers::FormWith
     include Phlex::Rails::Helpers::Routes
+    include Phlex::Rails::Helpers::DOMID
+    include Phlex::Rails::Helpers::ClassNames
 
     def initialize(**user_attrs)
       @attrs = mix(default_attrs, user_attrs)

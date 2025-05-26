@@ -1,8 +1,6 @@
 module Components
   module Layouts
     class MenuItems < Components::Base
-      private
-
       register_value_helper :controller
 
       def view_template

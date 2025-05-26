@@ -1,20 +1,27 @@
 Rails.application.routes.draw do
-  get  "sign_in", to: "sessions#new"
+  get  "sign_in", to: "sessions#new", as: :sign_in
   post "sign_in", to: "sessions#create"
-  get  "sign_up", to: "registrations#new"
-  post "sign_up", to: "registrations#create"
+  get  "sign_up", to: "users#new", as: :sign_up
+  post "sign_up", to: "users#create"
 
-  resources :sessions, only: [ :index, :show, :destroy ]
-  resource  :password, only: [ :edit, :update ]
+  resources :sessions, only: [ :destroy ]
+  resource :users, only: [ :destroy ]
 
   namespace :identity do
-    resource :email,              only: [ :edit, :update ]
     resource :email_verification, only: [ :show, :create ]
     resource :password_reset,     only: [ :new, :edit, :create, :update ]
   end
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get :dashboard, to: "dashboard#index"
+
+  namespace :settings do
+    resource :profile, only: [ :show, :update ]
+    resource :password, only: [ :show, :update ]
+    resource :email, only: [ :show, :update, :show ]
+    resources :sessions, only: [ :index ]
+  end
+
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   root "home#index"
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
