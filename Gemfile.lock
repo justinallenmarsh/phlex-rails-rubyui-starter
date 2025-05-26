@@ -181,6 +181,8 @@ GEM
       racc
     phlex (2.2.1)
       zeitwerk (~> 2.7)
+    phlex-icons-lucide (2.22.0)
+      phlex (>= 1.11)
     phlex-rails (2.2.0)
       phlex (~> 2.2.1)
       railties (>= 7.1, < 9)
@@ -360,18 +362,19 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   kamal
-  phlex-rails (~> 2.2)
+  phlex-icons-lucide
+  phlex-rails
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.2)
   rubocop-rails-omakase
-  ruby_ui (~> 1.0)
+  ruby_ui
   solid_cable
   solid_cache
   solid_queue
   sqlite3 (>= 2.1)
   stimulus-rails
-  tailwind_merge (~> 1.2)
+  tailwind_merge
   thruster
   turbo-rails
   tzinfo-data

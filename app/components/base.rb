@@ -6,6 +6,7 @@ module Components
 
     include Components
     include RubyUI
+    include PhlexIcons
 
     include Phlex::Rails::Helpers::Flash
     include Phlex::Rails::Helpers::FormWith

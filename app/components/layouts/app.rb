@@ -5,17 +5,15 @@ module Components
 
       def view_template(&)
         Layouts.Root do
-          main_container do
-            yield
+          div(class: "flex bg-background") do
+            div(class: "hidden lg:flex") do
+              Layouts.Sidenav
+            end
+            main(class: "flex rounded-md min-h-screen flex-col w-full items-center lg:justify-center lg:pt-2 lg:pb-2 lg:pr-2 md:pl-2") do
+              yield
+            end
           end
         end
-      end
-
-      def main_container(&)
-        main(
-          class: "flex min-h-screen flex-col items-center bg-[#FDFDFC] p-6 text-[#1b1b18] lg:justify-center lg:p-8 dark:bg-[#0a0a0a]",
-          &
-        )
       end
     end
   end
