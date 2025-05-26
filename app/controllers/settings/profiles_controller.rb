@@ -8,7 +8,6 @@ class Settings::ProfilesController < ApplicationController
   end
 
   def update
-    binding.irb
     if @user.update(user_params)
       redirect_to settings_profile_path, notice: "Your profile has been updated"
     else

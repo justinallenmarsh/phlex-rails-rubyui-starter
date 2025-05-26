@@ -13,6 +13,7 @@ module Components
     include Phlex::Rails::Helpers::Routes
     include Phlex::Rails::Helpers::DOMID
     include Phlex::Rails::Helpers::ClassNames
+    include Phlex::Rails::Helpers::TurboFrameTag
 
     def initialize(**user_attrs)
       @attrs = mix(default_attrs, user_attrs)

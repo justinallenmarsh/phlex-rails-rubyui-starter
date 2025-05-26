@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       Current.session = nil
       redirect_to root_path, notice: "Your account has been deleted"
     else
-      redirect_to settings_profile_path, alert: "Password challenge is invalid"
+      render Views::Settings::Profile.new(user:), status: :unprocessable_entity
     end
   end
 
