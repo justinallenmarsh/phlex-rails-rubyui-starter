@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "test_helper"
+
 class Settings::PasswordsTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:one)
@@ -27,7 +29,18 @@ class Settings::PasswordsTest < ActionDispatch::IntegrationTest
       password: "Secret6*4*2*",
       password_confirmation: "Secret6*4*2*"
     }
+    assert_response :unprocessable_entity
+  end
+
+  test "PATCH /settings/password with readonly user shows error" do
+    @user.update!(email: "me@example.com")
+
+    patch settings_password_url, params: {
+      password_challenge: "Secret1*3*5*",
+      password: "Secret6*4*2*",
+      password_confirmation: "Secret6*4*2*"
+    }
     assert_redirected_to settings_password_path
-    assert_equal "Password challenge is invalid", flash[:alert]
+    assert_equal "User is marked as readonly.", flash[:alert]
   end
 end

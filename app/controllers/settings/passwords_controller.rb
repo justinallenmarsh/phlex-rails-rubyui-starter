@@ -8,6 +8,8 @@ class Settings::PasswordsController < ApplicationController
   end
 
   def update
+    return redirect_to settings_password_path, alert: "User is marked as readonly." if @user.email == User::READONLY_EMAIL
+
     if @user.update(user_params)
       redirect_to settings_password_path, notice: "Your password has been changed"
     else

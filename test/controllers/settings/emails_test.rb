@@ -32,7 +32,16 @@ class Settings::EmailsTest < ActionDispatch::IntegrationTest
       email: "new_email@hey.com",
       password_challenge: "SecretWrong1*3"
     }
+    assert_response :unprocessable_entity
+  end
+
+  test "PATCH /update with readonly user shows error" do
+    @user.update!(email: "me@example.com")
+
+    patch settings_email_url, params: {
+      email: "new_email@hey.com"
+    }
     assert_redirected_to settings_email_url
-    assert_equal "Password challenge is invalid", flash[:alert]
+    assert_equal "User is marked as readonly.", flash[:alert]
   end
 end

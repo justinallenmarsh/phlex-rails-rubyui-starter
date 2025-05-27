@@ -8,6 +8,8 @@ class Settings::EmailsController < ApplicationController
   end
 
   def update
+    return redirect_to settings_email_path, alert: "User is marked as readonly." if @user.email == User::READONLY_EMAIL
+
     if @user.update(user_params)
       redirect_to_success
     else

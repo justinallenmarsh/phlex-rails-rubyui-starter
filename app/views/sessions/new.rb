@@ -59,6 +59,13 @@ module Views
               end
             end
           end
+          div(class: "flex flex-col gap-2 text-muted-foreground mb-4 text-center text-xs font-medium") do
+            div(class: "flex justify-center items-center gap-2") do
+              p { "Default read-only user:" }
+              code { "me@example.com / password1234" }
+            end
+            p { "Database is reset hourly." }
+          end
         end
       end
     end
