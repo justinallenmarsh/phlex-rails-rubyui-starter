@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       send_email_verification
       redirect_to dashboard_path, notice: "Welcome! You have signed up successfully"
     else
-      redirect_to sign_up_path
+      render Views::Users::New.new(user: @user), status: :unprocessable_entity
     end
   end
 
