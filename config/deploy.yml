@@ -20,8 +20,8 @@ servers:
 proxy:
   ssl: false
   hosts:
-    - justinmarsh.dev
-    - www.justinmarsh.dev
+    - therails.dev
+    - www.therails.dev
   forward_headers: true
 
 # Credentials for your image host.
