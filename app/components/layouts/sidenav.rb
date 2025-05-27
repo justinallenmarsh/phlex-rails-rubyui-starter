@@ -16,13 +16,13 @@ module Components
           end
 
           div(class: "flex flex-col gap-2 items-start items-center p-2") do
-            render Menu::MenuItem.new href: "https://github.com/jmarsh24/phlex-rails-rubyui-starter", target: "_blank", class: "text-muted-foreground gap-2" do
+            render Menu::MenuItem.new href: "https://github.com/jmarsh24/phlex-rails-rubyui-starter", target: "_blank", class: "flex justify-start w-full text-muted-foreground gap-2" do
               Lucide.Folder(class: "size-4")
 
               span { "Repository" }
             end
 
-            render Menu::MenuItem.new href: "https://phlex.fun", target: "_blank", class: "text-muted-foreground gap-2" do
+            render Menu::MenuItem.new href: "https://phlex.fun", target: "_blank", class: "flex justify-start w-full text-muted-foreground gap-2" do
               Lucide.BookOpen(class: "size-4")
 
               span { "Documentation" }

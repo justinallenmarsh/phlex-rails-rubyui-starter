@@ -17,7 +17,7 @@ module Components
             variant: :ghost,
             size: :md,
             class: class_names(
-              "w-full flex gap-2 justify-start px-2",
+              "w-full flex gap-2 justify-start",
               "bg-muted": @active
             ),
             **attrs.except(:href)
