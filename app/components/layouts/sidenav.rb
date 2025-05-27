@@ -2,7 +2,7 @@ module Components
   module Layouts
     class Sidenav < Components::Base
       def view_template
-        render Menu::Menu.new size: :lg, class: "h-dvh flex flex-col justify-between bg-base-200 min-h-full w-(--sidebar-width)" do
+        render Menu::Menu.new size: :lg, class: "h-full flex flex-col justify-between bg-base-200 min-h-full w-(--sidebar-width)" do
           div(class: "flex flex-col gap-2") do
             div(class: "flex gap-3 items-center p-2") do
               div(class: "p-1 round-md bg-ruby-red rounded-md") do
