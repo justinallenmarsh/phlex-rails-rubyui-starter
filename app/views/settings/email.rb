@@ -3,6 +3,10 @@
 module Views
   module Settings
     class Email < Views::Base
+      def initialize(user:)
+        @user = user
+      end
+
       def view_template
         Layouts.Settings do
           div(class: "flex-1 md:max-w-2xl") do
@@ -13,36 +17,49 @@ module Views
                   p(class: "text-muted-foreground text-sm") { "Update your email address" }
                 end
 
-                form_with(url: settings_email_path, method: :put, class: "flex flex-col gap-6 w-full") do |form|
-                  div(class: "grid gap-6") do
-                    div(class: "grid gap-2") do
-                      FormFieldLabel(for: "email") { "Email" }
-                      Input(
-                        class: "w-full",
-                        id: "email",
-                        name: "email",
-                        type: "email",
-                        required: true,
-                        autofocus: true,
-                        autocomplete: "email",
-                        placeholder: "email@example.com"
-                      )
+                form_with(url: settings_email_path, method: :put, class: "space-y-6") do |form|
+                  FormField do
+                    FormFieldLabel(for: "email") { "Email" }
+                    Input(
+                      name: "email",
+                      type: "email",
+                      required: true,
+                      autofocus: true,
+                      autocomplete: "email",
+                      value: @user.email
+                    )
+                    FormFieldError { @user.errors.full_messages_for(:email).first }
+                    unless @user.verified?
+                      div(class: "flex gap-2 items-center") do
+                        p(class: "text-muted-foreground text-sm") do
+                          "Your email address is unverified."
+                        end
+                        Link(
+                          href: identity_email_verification_path,
+                          as: "button",
+                          class: "underline p-0 h-auto"
+                        ) do
+                          "Click here to resend the verification email."
+                        end
+                      end
                     end
+                  end
 
-                    div(class: "grid gap-2") do
-                      FormFieldLabel(for: "password_challenge") { "Current password" }
-                      Input(
-                        class: "w-full",
-                        id: "password_challenge",
-                        name: "password_challenge",
-                        type: "password",
-                        required: true,
-                        autocomplete: "current-password"
-                      )
+                  FormField do
+                    FormFieldLabel(for: "password_challenge") { "Current password" }
+                    Input(
+                      name: "password_challenge",
+                      type: "password",
+                      autocomplete: "current-password"
+                    )
+                    div(class: "text-destructive") do
+                      @user.errors.full_messages_for(:password_challenge).first
                     end
+                  end
 
-                    Button(type: "submit", class: "w-full") do
-                      "Save changes"
+                  div(class: "flex items-center gap-4") do
+                    Button(type: "submit") do
+                      "Save"
                     end
                   end
                 end

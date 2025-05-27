@@ -14,7 +14,7 @@ module Views
             p(class: "text-muted-foreground text-center text-sm") { "Enter your details below to create your account" }
             form_with(url: sign_up_path, class: "flex flex-col gap-6 w-full") do |form|
               div(class: "grid gap-6") do
-                div(class: "grid gap-2") do
+                FormField do
                   FormFieldLabel(for: "email") { "Email address" }
                   Input(
                     class: "w-full",
@@ -28,14 +28,10 @@ module Views
                     autocomplete: "email",
                     placeholder: "email@example.com"
                   )
-                  if @user&.errors&.any?
-                    @user.errors.full_messages_for(:email).each do |message|
-                      render InputError.new(message:)
-                    end
-                  end
+                  FormFieldError { @user.errors.full_messages_for(:email).first }
                 end
 
-                div(class: "grid gap-2") do
+                FormField do
                   FormFieldLabel(for: "password") { "Password" }
                   Input(
                     class: "w-full",
@@ -47,15 +43,10 @@ module Views
                     autocomplete: "new-password",
                     placeholder: "Password"
                   )
-                  div(class: "text-muted-foreground text-xs") { "12 characters minimum" }
-                  if @user&.errors&.any?
-                    @user.errors.full_messages_for(:password).each do |message|
-                      render InputError.new(message:)
-                    end
-                  end
+                  FormFieldError { @user.errors.full_messages_for(:password).first }
                 end
 
-                div(class: "grid gap-2") do
+                FormField do
                   FormFieldLabel(for: "password_confirmation") { "Confirm password" }
                   Input(
                     class: "w-full",
@@ -67,11 +58,7 @@ module Views
                     autocomplete: "new-password",
                     placeholder: "Confirm password"
                   )
-                  if @user&.errors&.any?
-                    @user.errors.full_messages_for(:password_confirmation).each do |message|
-                      render InputError.new(message:)
-                    end
-                  end
+                  FormFieldError { @user.errors.full_messages_for(:password_confirmation).first }
                 end
 
                 Button(type: "submit", class: "w-full", tabindex: 4) do

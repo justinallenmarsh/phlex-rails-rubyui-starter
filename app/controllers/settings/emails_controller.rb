@@ -11,7 +11,7 @@ class Settings::EmailsController < ApplicationController
     if @user.update(user_params)
       redirect_to_success
     else
-      redirect_to settings_email_path, alert: "Password challenge is invalid"
+      render Views::Settings::Email.new(user: @user), status: :unprocessable_entity
     end
   end
 

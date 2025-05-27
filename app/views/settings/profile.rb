@@ -16,7 +16,7 @@ module Views
                 p(class: "text-sm text-muted-foreground") { "Update your name" }
 
                 form_with(url: settings_profile_path, method: :put, class: "flex flex-col gap-6 w-full", id: "profile_form") do |form|
-                  div(class: "grid gap-2") do
+                  FormField do
                     FormFieldLabel(for: "name") { "Name" }
                     Input(
                       class: "w-full",
@@ -30,12 +30,7 @@ module Views
                       placeholder: "Your name",
                       value: @user.name
                     )
-
-                    if @user.errors.any?
-                      @user.errors.full_messages_for(:name).each do |message|
-                        render InputError.new(message:)
-                      end
-                    end
+                    FormFieldError { @user.errors.full_messages_for(:name).first }
                   end
 
                   Button(type: "submit", class: "w-full", tabindex: 2) do
@@ -69,7 +64,7 @@ module Views
                         DialogMiddle do
                           form_with(url: users_path, method: :delete, id: "delete_form") do |form|
                             div(class: "space-y-4") do
-                              div(class: "grid gap-2") do
+                              FormField do
                                 FormFieldLabel(for: "password_challenge") { "Confirm Password" }
                                 Input(
                                   class: "w-full",
@@ -82,11 +77,7 @@ module Views
                                   autocomplete: "current-password",
                                   placeholder: "Enter your password"
                                 )
-                                if @user.errors.any?
-                                  @user.errors.full_messages_for(:password_challenge).each do |message|
-                                    render InputError.new(message:)
-                                  end
-                                end
+                                FormFieldError { @user.errors.full_messages_for(:password_challenge).first }
                               end
                             end
                           end
