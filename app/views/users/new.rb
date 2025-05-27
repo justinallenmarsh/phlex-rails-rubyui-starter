@@ -15,6 +15,25 @@ module Views
             form_with(url: sign_up_path, class: "flex flex-col gap-6 w-full") do |form|
               div(class: "grid gap-6") do
                 FormField do
+                  FormFieldLabel(for: "name") { "Full name" }
+                  Input(
+                    class: "w-full",
+                    id: "name",
+                    name: "name",
+                    type: "text",
+                    value: @user&.name,
+                    required: true,
+                    autofocus: true,
+                    tabindex: 1,
+                    autocomplete: "name",
+                    placeholder: "John Doe"
+                  )
+                  if @user&.errors&.any?
+                    FormFieldError { @user.errors.full_messages_for(:name).first }
+                  end
+                end
+
+                FormField do
                   FormFieldLabel(for: "email") { "Email address" }
                   Input(
                     class: "w-full",
@@ -23,8 +42,7 @@ module Views
                     type: "email",
                     value: @user&.email,
                     required: true,
-                    autofocus: true,
-                    tabindex: 1,
+                    tabindex: 2,
                     autocomplete: "email",
                     placeholder: "email@example.com"
                   )
@@ -41,7 +59,7 @@ module Views
                     name: "password",
                     type: "password",
                     required: true,
-                    tabindex: 2,
+                    tabindex: 3,
                     autocomplete: "new-password",
                     placeholder: "Password"
                   )
@@ -58,7 +76,7 @@ module Views
                     name: "password_confirmation",
                     type: "password",
                     required: true,
-                    tabindex: 3,
+                    tabindex: 4,
                     autocomplete: "new-password",
                     placeholder: "Confirm password"
                   )
@@ -67,14 +85,14 @@ module Views
                   end
                 end
 
-                Button(type: "submit", class: "w-full", tabindex: 4) do
+                Button(type: "submit", class: "w-full", tabindex: 5) do
                   "Sign up"
                 end
               end
 
               div(class: "flex justify-center items-center text-muted-foreground text-center text-sm") do
                 p { "Already have an account? " }
-                Link(href: sign_in_path, tabindex: 5) do
+                Link(href: sign_in_path, tabindex: 6) do
                   "Log in"
                 end
               end
