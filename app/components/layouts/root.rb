@@ -3,6 +3,10 @@ module Components
     class Root < Base
       include Phlex::Rails::Layout
 
+      def initialize(page_info)
+        @page_info = page_info
+      end
+
       private
 
       def view_template(&)
@@ -10,7 +14,7 @@ module Components
 
         html do
           head do
-            title { "phlex-rails-rubyui-starter" }
+            title { @page_info.title }
 
             meta name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
             meta name: "apple-mobile-web-app-capable", content: "yes"
