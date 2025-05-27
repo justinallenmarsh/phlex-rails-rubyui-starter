@@ -8,7 +8,7 @@ module Components
       def view_template(&)
         doctype
 
-        html do
+        html(class: "dark") do
           head do
             title { "phlex-rails-rubyui-starter" }
 
