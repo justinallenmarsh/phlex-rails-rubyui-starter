@@ -11,7 +11,7 @@ class Settings::PasswordsController < ApplicationController
     if @user.update(user_params)
       redirect_to settings_password_path, notice: "Your password has been changed"
     else
-      redirect_to settings_password_path, alert: "Password challenge is invalid"
+      render Views::Settings::Password.new(user: Current.user), status: :unprocessable_entity
     end
   end
 

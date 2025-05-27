@@ -33,7 +33,7 @@ module Views
                       end
                       unless session == Current.session
                         form_with(url: session_path(session), method: :delete) do |form|
-                          button(type: :submit, class: "text-sm text-destructive hover:underline") { "Log out" }
+                          Button(type: :submit, variant: :destructive) { "Log out" }
                         end
                       end
                     end
