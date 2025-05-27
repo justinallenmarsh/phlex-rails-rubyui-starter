@@ -28,7 +28,9 @@ module Views
                     autocomplete: "email",
                     placeholder: "email@example.com"
                   )
-                  FormFieldError { @user.errors.full_messages_for(:email).first }
+                  if @user&.errors&.any?
+                    FormFieldError { @user.errors.full_messages_for(:email).first }
+                  end
                 end
 
                 FormField do
@@ -43,7 +45,9 @@ module Views
                     autocomplete: "new-password",
                     placeholder: "Password"
                   )
-                  FormFieldError { @user.errors.full_messages_for(:password).first }
+                  if @user&.errors&.any?
+                    FormFieldError { @user.errors.full_messages_for(:password).first }
+                  end
                 end
 
                 FormField do
@@ -58,7 +62,9 @@ module Views
                     autocomplete: "new-password",
                     placeholder: "Confirm password"
                   )
-                  FormFieldError { @user.errors.full_messages_for(:password_confirmation).first }
+                  if @user&.errors&.any?
+                    FormFieldError { @user.errors.full_messages_for(:password_confirmation).first }
+                  end
                 end
 
                 Button(type: "submit", class: "w-full", tabindex: 4) do
