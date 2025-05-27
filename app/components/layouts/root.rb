@@ -32,7 +32,7 @@ module Components
             stylesheet_link_tag :application, data_turbo_track: :reload
           end
 
-          body do
+          body(data_controller: "ruby-ui--theme-toggle") do
             yield
 
             Components::Layouts.Flash
