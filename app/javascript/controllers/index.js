@@ -15,3 +15,6 @@ application.register("ruby-ui--dropdown-menu", RubyUi__DropdownMenuController)
 
 import RubyUi__FormFieldController from "./ruby_ui/form_field_controller"
 application.register("ruby-ui--form-field", RubyUi__FormFieldController)
+
+import RubyUi__ThemeToggleController from "./ruby_ui/theme_toggle_controller"
+application.register("ruby-ui--theme-toggle", RubyUi__ThemeToggleController)

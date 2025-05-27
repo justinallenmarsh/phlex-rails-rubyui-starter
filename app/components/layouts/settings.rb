@@ -20,6 +20,7 @@ module Components
                   Link(href: settings_email_path, class: class_names("justify-start", "bg-muted": email_active?), variant: :ghost) { "Email" }
                   Link(href: settings_password_path, class: class_names("justify-start", "bg-muted": password_active?), variant: :ghost) { "Password" }
                   Link(href: settings_sessions_path, class: class_names("justify-start", "bg-muted": sessions_active?), variant: :ghost) { "Sessions" }
+                  Link(href: settings_appearance_path, class: class_names("justify-start", "bg-muted": apperance_active?), variant: :ghost) { "Appearance" }
                 end
               end
               yield
@@ -42,6 +43,10 @@ module Components
 
       def sessions_active?
         ::Settings::SessionsController === controller
+      end
+
+      def apperance_active?
+        ::Settings::AppearancesController === controller
       end
     end
   end

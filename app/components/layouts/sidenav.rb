@@ -34,7 +34,7 @@ module Components
                   render RubyUI::Button.new(variant: :ghost, size: :md, class: "w-full flex justify-between items-center px-2") do
                     div(class: "flex items-center gap-2") do
                       render Avatar.new(class: "size-7") do
-                        AvatarFallback(class: "bg-neutral-700 text-sm text-muted-foreground") { "EU" }
+                        AvatarFallback(class: "bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white text-sm text-muted-foreground") { "EU" }
                       end
                       span(class: "text-sm") { "user@example.com" }
                     end
@@ -42,7 +42,7 @@ module Components
                   end
                 end
 
-                DropdownMenuContent(class: "bg-black") do
+                DropdownMenuContent(class: "bg-background") do
                   div(class: "flex items-center gap-4 p-2") do
                     render Avatar.new(class: "size-8") do
                       AvatarFallback { "EU" }

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resource :password, only: [ :show, :update ]
     resource :email, only: [ :show, :update, :show ]
     resources :sessions, only: [ :index ]
+    resource :appearance, only: [ :show ]
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
