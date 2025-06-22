@@ -30,6 +30,9 @@ module Components
             # stylesheet_link_tag :app, data_turbo_track: :reload
             javascript_include_tag :application, data_turbo_track: :reload, type: :module
             stylesheet_link_tag :application, data_turbo_track: :reload
+            turbo_refreshes_with(method: :morph, scroll: :preserve)
+            # meta name: "turbo-refresh-method", content: "morph"
+            # meta name: "turbo-refresh-scroll", content: "preserve"
           end
 
           body(data_controller: "ruby-ui--theme-toggle") do
