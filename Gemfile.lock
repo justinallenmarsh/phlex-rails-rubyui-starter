@@ -181,7 +181,7 @@ GEM
       racc
     phlex (2.2.1)
       zeitwerk (~> 2.7)
-    phlex-icons-lucide (2.22.0)
+    phlex-icons-lucide (2.29.0)
       phlex (>= 1.11)
     phlex-rails (2.2.0)
       phlex (~> 2.2.1)
